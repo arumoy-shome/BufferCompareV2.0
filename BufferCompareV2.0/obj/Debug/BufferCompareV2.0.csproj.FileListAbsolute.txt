@@ -1,0 +1,35 @@
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\BufferCompareV2.0.csprojResolveAssemblyReference.cache
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\App.g.cs
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\WpfApplication1_MarkupCompile.cache
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\MainWindow.baml
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\MainWindow.g.cs
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\WpfApplication1.g.resources
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\WpfApplication1.Properties.Resources.resources
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\BufferCompareV2.0.csproj.GenerateResource.Cache
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\bin\Debug\WpfApplication1.exe.config
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\bin\Debug\WpfApplication1.exe
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\bin\Debug\WpfApplication1.pdb
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\bin\Debug\FileHelpers.dll
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\bin\Debug\FileHelpers.xml
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\WpfApplication1.exe
+C:\Users\admin\AppData\Local\Temporary Projects\WpfApplication1\obj\Debug\WpfApplication1.pdb
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\BufferCompareV2.0.exe.config
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\BufferCompareV2.0.exe
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\BufferCompareV2.0.pdb
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\MainWindow.baml
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\MainWindow.g.cs
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\App.g.cs
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\BufferCompareV2.0_MarkupCompile.cache
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\BufferCompareV2.0.g.resources
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\WpfApplication1.Properties.Resources.resources
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\BufferCompareV2.0.csproj.GenerateResource.Cache
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\BufferCompareV2.0.exe
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\BufferCompareV2.0.pdb
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\DetailPopUp.baml
+C:\Users\admin\documents\visual studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\obj\Debug\DetailPopUp.g.cs
+C:\Users\admin\Documents\Visual Studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\ConsoleControl.WPF.dll
+C:\Users\admin\Documents\Visual Studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\ConsoleControlAPI.dll
+C:\Users\admin\Documents\Visual Studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\ConsoleControl.WPF.pdb
+C:\Users\admin\Documents\Visual Studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\ConsoleControl.WPF.xml
+C:\Users\admin\Documents\Visual Studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\ConsoleControlAPI.pdb
+C:\Users\admin\Documents\Visual Studio 2012\Projects\BufferCompareV2.0\BufferCompareV2.0\bin\Debug\ConsoleControlAPI.xml

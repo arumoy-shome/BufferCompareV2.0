@@ -1,0 +1,151 @@
+﻿<Window x:Name="MainWindowBC" x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:s="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:p="clr-namespace:System;assembly=mscorlib"
+        Title="Buffer Compare v2.0" Height="900" Width="950">
+    <Grid Margin="0,0,0,-1" Background="#FFBD86FF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450*"/>
+            <ColumnDefinition Width="450*"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock x:Name="TextBlockNewBuffer" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="148,20,148,0" VerticalAlignment="Top" Width="100" Height="30"><Bold>NEW BUFFER FILE</Bold></TextBlock>
+        <Button x:Name="UploadButtonNewFile" Content="Open" HorizontalAlignment="Stretch" Margin="10,160,360,0" VerticalAlignment="Top" Width="75" Click="UploadButtonNewFile_Click"/>
+        <TextBox x:Name="TextBoxNewFilePath" HorizontalAlignment="Stretch" Height="23" Margin="90,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" TextChanged="TextBoxNewFilePath_TextChanged"/>
+        <TextBlock x:Name="TextBlockNew" HorizontalAlignment="Stretch" Margin="70,220,240,0" Text="STANDARD:" TextAlignment="Center" FontWeight="Bold" Width="70" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlockNewFileStandard" HorizontalAlignment="Stretch" TextAlignment="Center" Height="25" Margin="135,220,150,0" VerticalAlignment="Top" Width="80" />
+        <TextBlock x:Name="TextBlockNewFileProgress" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="260,220,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" />
+        <Button x:Name="ButtonNewInvoke" Content="Invoke" HorizontalAlignment="Stretch" Margin="0,60,0,0" VerticalAlignment="Top" Width="74" Click="ButtonNewInvoke_Click" RenderTransformOrigin="0.797,0.636"/>
+        <TextBlock x:Name="TextBlockNewCsv" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="0,120,0,0" VerticalAlignment="Top" Width="100" Height="30"><Bold><Run Text="NEW CSV FILE"/></Bold></TextBlock>
+        <ListView x:Name="ListViewNewFile"  HorizontalAlignment="Stretch" Height="540" Margin="0,260,0,0" VerticalAlignment="Top" Width="450" MouseDoubleClick="ListViewNewFile_DoubleClick" Background="#FFFFFFC3" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="NewLineNumber" Width="90" DisplayMemberBinding="{Binding linenumber}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="linenumber" Click="lvColumnHeaderNew_Click">Line
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="NewSampleNumber" Width="90" DisplayMemberBinding="{Binding samplenumber}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="samplenumber" Click="lvColumnHeaderNew_Click">Sample
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="NewDIDSDID" Width="90" DisplayMemberBinding="{Binding DIDSDID}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="DIDSDID" Click="lvColumnHeaderNew_Click">DID/SDID
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="NewDateCount" Width="85" DisplayMemberBinding="{Binding datecount}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="datecount" Click="lvColumnHeaderNew_Click">DC
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="NewUsedWhere" Width="90" DisplayMemberBinding="{Binding usedwhere}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="usedwhere" Click="lvColumnHeaderNew_Click">SMPTE Standard
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Height" Value="24"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Background" Value="{Binding ItemBrush}"></Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFFFC704" Offset="0.986"/>
+                                        <GradientStop Color="#FFF4E057" Offset="0.5"/>
+                                        <GradientStop Color="#FFF4E057" Offset="0.51"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
+        <TextBlock x:Name="TextBlockOldFileProgress" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="260,220,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Grid.Column="1"/> 
+        <TextBlock x:Name="TextBlockOld" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="70,220,240,0" Text="STANDARD:" FontWeight="Bold" Width="70" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBlock x:Name="TextBlockOldFileStandard" HorizontalAlignment="Stretch" TextAlignment="Center" Height="25" Margin="135,220,150,0" VerticalAlignment="Top" Width="80" Grid.Column="1"/>
+        <TextBlock x:Name="TextBlockOldBuffer" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="149,20,147,0" VerticalAlignment="Top" Width="100" Height="30" Grid.Column="1" FontWeight="Bold" Text="OLD BUFFER FILE"/>
+        <Button x:Name="UploadButtonOldFile" Content="Open" HorizontalAlignment="Stretch" Margin="10,160,360,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="UploadButtonOldFile_Click"/>
+        <TextBox x:Name="TextBoxOldFilePath" HorizontalAlignment="Stretch" Height="23" Margin="90,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Grid.Column="1" TextChanged="TextBoxOldFilePath_TextChanged"/>
+        <ListView x:Name="ListViewOldFile" HorizontalAlignment="Stretch" Height="540" Margin="0,260,0,0" VerticalAlignment="Top" Width="450" Grid.Column="1" Background="#FFFFFFC3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="OldLineNumber1" Width="90" DisplayMemberBinding="{Binding linenumber}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="linenumber" Click="lvColumnHeaderOld_Click">Line
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="OldSampleNumber1" Width="90" DisplayMemberBinding="{Binding samplenumber}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="samplenumber" Click="lvColumnHeaderOld_Click">Sample
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="OldDIDSDID" Width="90" DisplayMemberBinding="{Binding DIDSDID}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="DIDSDID" Click="lvColumnHeaderOld_Click">DID/SDID
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="OldDateCount" Width="85" DisplayMemberBinding="{Binding datecount}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="datecount" Click="lvColumnHeaderOld_Click">DC
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="OldUsedWhere" Width="90" DisplayMemberBinding="{Binding usedwhere}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="usedwhere" Click="lvColumnHeaderOld_Click">SMPTE Standard
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Height" Value="24"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Background" Value="{Binding ItemBrush}"></Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFFFC704" Offset="0.986"/>
+                                        <GradientStop Color="#FFF4E057" Offset="0.5"/>
+                                        <GradientStop Color="#FFF4E057" Offset="0.51"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
+        <Button x:Name="ButtonCompare" Content="Compare" HorizontalAlignment="Stretch" Margin="0,820,0,0" VerticalAlignment="Top" Width="60" Grid.ColumnSpan="2" Height="40" Click="ButtonCompare_Click" RenderTransformOrigin="-1.083,0.45" />
+        <TextBlock x:Name="TextBlockOldCsv" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="0,120,0,0" VerticalAlignment="Top" Width="100" Height="30" Grid.Column="1" FontWeight="Bold" Text="OLD CSV FILE"/>
+        <Button x:Name="ButtonOldInvoke" Content="Invoke" HorizontalAlignment="Stretch" Margin="0,60,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="ButtonOldInvoke_Click"/>
+
+    </Grid>
+</Window>
