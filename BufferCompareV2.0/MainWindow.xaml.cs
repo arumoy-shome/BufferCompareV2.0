@@ -27,8 +27,10 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         //create OpenFileDialog
-        Microsoft.Win32.OpenFileDialog dlgnewfile = new Microsoft.Win32.OpenFileDialog();
-        Microsoft.Win32.OpenFileDialog dlgoldfile = new Microsoft.Win32.OpenFileDialog();
+        Microsoft.Win32.OpenFileDialog file_browser = new Microsoft.Win32.OpenFileDialog();
+        //setting .csv filter
+            file_browser.DefaultExt = ".csv";
+            file_browser.Filter = "CSV Files (*.csv)|*.csv";
 
         public MainWindow()
         {
@@ -48,17 +50,10 @@ namespace WpfApplication1
 
                 catch {/*let code work*/}
             }
-     
-            //setting .csv filter
-            dlgnewfile.DefaultExt = ".csv";
-            dlgnewfile.Filter = "CSV Files (*.csv)|*.csv";
 
-            //calling ShowDialog method
-            Variables.bool_newfilepath = dlgnewfile.ShowDialog();
-
-            if (Variables.bool_newfilepath == true)
+            if (file_browser.ShowDialog())
             {
-                Variables.string_newfilepath = dlgnewfile.FileName;
+                Variables.string_newfilepath = file_browser.FileName;
                 TextBoxNewFilePath.Text = Variables.string_newfilepath;
             }
 
@@ -67,59 +62,16 @@ namespace WpfApplication1
 
             TextBlockNewFileProgress.Text = "Loading...";
 
-            //object to call methods in Read class
-            Read readfile = new Read();
+            //new Index class object
+            Index data = new Index();
 
-            //call NewFileRead method
-             await Task.Run(() => readfile.NewFileRead());
+            //call Read method
+             int total_rows = await Task.Run(() => data.Read(Variables.string_newfilepath));
            
             //show standard in TextBlock
-            if (Variables.bool_newfilestandard1080i50 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-              
-                TextBlockNewFileStandard.Text = "1080i50";
-                sortobject.NewFileSort1080i50();
-                Variables.bool_newfilestandard1080i50 = false;
-                Variables.bool_find1080i50 = true;
-            }
-
-            else if (Variables.bool_newfilestandard1080i59 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-
-                TextBlockNewFileStandard.Text = "1080i5994";
-                sortobject.NewFileSort1080i59();
-                Variables.bool_newfilestandard1080i59 = false;
-                Variables.bool_find1080i59 = true;
-            }
-
-            else if (Variables.bool_newfilestandard720p50 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-
-                TextBlockNewFileStandard.Text = "720p50";
-                sortobject.NewFileSort720p50();
-                Variables.bool_newfilestandard720p50 = false;
-                Variables.bool_find720p50 = true;
-            }
-
-            else if (Variables.bool_newfilestandard720p59 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-
-                TextBlockNewFileStandard.Text = "720p5994";
-                sortobject.NewFileSort720p59();
-                Variables.bool_newfilestandard720p59 = false;
-                Variables.bool_find720p59 = true;
-            }
-
-            TextBlockNewFileProgress.Text = " ";
-            
+            switch(total_rows){
+                case 
+            }            
         }
 
         private async void UploadButtonOldFile_Click(object sender, RoutedEventArgs e)
@@ -137,15 +89,15 @@ namespace WpfApplication1
             }
 
             //setting .csv filter
-            dlgoldfile.DefaultExt = ".csv";
-            dlgoldfile.Filter = "CSV Files (*.csv)|*.csv";
+            file_browser.DefaultExt = ".csv";
+            file_browser.Filter = "CSV Files (*.csv)|*.csv";
 
             //calling ShowDialog method
-            Variables.bool_oldfilepath = dlgoldfile.ShowDialog();
+            Variables.bool_oldfilepath = file_browser.ShowDialog();
 
             if (Variables.bool_oldfilepath == true)
             {
-                Variables.string_oldfilepath = dlgoldfile.FileName;
+                Variables.string_oldfilepath = file_browser.FileName;
                 TextBoxOldFilePath.Text = Variables.string_oldfilepath;
             }
 
