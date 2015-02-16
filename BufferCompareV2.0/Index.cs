@@ -26,15 +26,13 @@ namespace WpfApplication1{
         //reading new csv file
         public DefineArray[] new_pixel = new_read.ReadFile(file_path) as DefineArray[];
         return new_pixel.Length;
-      }
-
-      catch{
-        MessageBox.Show("Invalid format! Please upload the simple format and try again.");
-        return;
+      } catch{
+          MessageBox.Show("Invalid format! Please upload the simple format and try again.");
+          return;
       }
     }
 
-    public void Sort(string type){
+    public void Sort(int type){
       //sets params based on type
       int total_rows = 0;
       int rows_per_line = 0;
@@ -48,24 +46,20 @@ namespace WpfApplication1{
           total_rows = 742500;
           rows_per_line = 990;
           first_sample = 1284;
-        }
-        case "720p59":{
-          total_rows =  618750;
-          rows_per_line = 825;
-          first_sample = 1284;
-        }
-        case "1080i50":{
-          total_rows = 1485000;
-          rows_per_line = 1320;
-          first_sample = 1924;
-        }
-        case "1080i59":{
-          total_rows = 1237500;
-          rows_per_line = 1100;
-          first_sample = 1924;
-        }
-        default:
-        //
+        } case "720p59":{
+            total_rows =  618750;
+            rows_per_line = 825;
+            first_sample = 1284;
+        } case "1080i50":{
+            total_rows = 1485000;
+            rows_per_line = 1320;
+            first_sample = 1924;
+        } case "1080i59":{
+            total_rows = 1237500;
+            rows_per_line = 1100;
+            first_sample = 1924;
+        } default:
+            //
       }
 
       try{
@@ -89,45 +83,33 @@ namespace WpfApplication1{
             sample_counter = 0;
           }
 
-        //calculate line number
-        if (line_counter < rows_per_line){
-          s_line_number = 746;
-        }
+          //calculate line number
+          if (line_counter < rows_per_line){
+            s_line_number = 746;
+          } else if (line_counter == rows_per_line || line_counter < (2 * rows_per_line)){
+              s_line_number = 747;
+          } else if (line_counter == (2 * rows_per_line) || line_counter < (3 * rows_per_line)){
+              s_line_number = 748;
+          } else if (line_counter == (3 * rows_per_line) || line_counter < (4 * rows_per_line)){
+              s_line_number = 749;
+          } else if (line_counter == (4 * rows_per_line) || line_counter < (5 * rows_per_line)){
+              s_line_number = 750;
+          } else{
+              s_line_number = (line_counter / rows_per_line) - 4;
+          }
 
-        else if (line_counter == rows_per_line || line_counter < (2 * rows_per_line)){
-          s_line_number = 747;
+          //save line number for item in samplearray
+          //1st col : linenumber
+          //2nd col : even sample number
+          //3rd col : odd sample number
+          data_array[line_counter, 0] = System.Convert.ToInt32(s_line_number);
+          data_array[line_counter, 1] = sample_array[sample_counter, 0];
+          data_array[line_counter, 2] = sample_array[sample_counter, 1];
+          line_counter++;
+          sample_counter++;
         }
-
-        else if (line_counter == (2 * rows_per_line) || line_counter < (3 * rows_per_line)){
-          s_line_number = 748;
-        }
-
-        else if (line_counter == (3 * rows_per_line) || line_counter < (4 * rows_per_line)){
-          s_line_number = 749;
-        }
-
-        else if (line_counter == (4 * rows_per_line) || line_counter < (5 * rows_per_line)){
-          s_line_number = 750;
-        }
-
-        else{
-          s_line_number = (line_counter / rows_per_line) - 4;
-        }
-
-            //save line number for item in samplearray
-            //1st col : linenumber
-            //2nd col : even sample number
-            //3rd col : odd sample number
-            data_array[line_counter, 0] = System.Convert.ToInt32(s_line_number);
-            data_array[line_counter, 1] = sample_array[sample_counter, 0];
-            data_array[line_counter, 2] = sample_array[sample_counter, 1];
-            line_counter++;
-            sample_counter++;
-        }
-      }
-
-      catch{
-        return MessageBox.Show(Variables.string_unknownerror_sort);
+      } catch{
+          return MessageBox.Show(Variables.string_unknownerror_sort);
       }
     }
 

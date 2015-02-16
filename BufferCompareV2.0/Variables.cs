@@ -46,20 +46,11 @@ namespace WpfApplication1
                  PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
              }
          }
- 
-         public static bool bool_find720p50 = false;
-         public static bool bool_find720p59 = false;
-         public static bool bool_find1080i50 = false;
-         public static bool bool_find1080i59 = false;
-         public static Nullable<bool> bool_newfilepath;
-         public static Nullable<bool> bool_oldfilepath;
+         
          public static Nullable<bool> bool_capturefilepath;
-         public static string string_newfilepath { get; set; }
+         public static string new_file_path { get; set; }
+         public static string old_file_path { get; set; }
          public static string string_capturefilepath { get; set; }
-         public const int totalrows1080i50 = 1485000;
-         public const int totalrows1080i59 = 1237500;
-         public const int totalrows720p59 = 618750;
-         public const int totalrows720p50 = 742500;
          public static int samplenumvar1 = 0;
          public static int s_samplenumber = 0;
          public static string[,] didsdidarray = new string[42, 3] { { "08", "08", "S353" }, { "08", "0c", "S353" }, { "40", "01", "S305" }, { "40", "02", "S348" }, { "40", "04", "S427" }, { "40", "05", "S427" }, { "40", "06", "S427" }, { "41", "01", "S352" }, { "41", "05", "S2016-3" }, { "41", "06", "S2016-6" }, { "41", "07", "S2010" }, { "41", "08", "S2031" }, { "41", "09", "ST 2056" }, { "41", "0a", "ST 2068" }, { "43", "01", "ITU-R BT.1685" }, { "43", "02", "RDD8" }, { "43", "03", "RDD8" }, { "43", "04", "ARIB TR-B29" }, { "43", "05", "RDD18" }, { "44", "04", "RP214" }, { "44", "14", "RP214" }, { "44", "44", "RP223" }, { "45", "01", "S2020-1" }, { "45", "02", "S2020-1" }, { "45", "03", "S2020-1" }, { "45", "04", "S2020-1" }, { "45", "05", "S2020-1" }, { "45", "06", "S2020-1" }, { "45", "07", "S2020-1" }, { "45", "08", "S2020-1" }, { "45", "09", "S2020-1" }, { "46", "01", "ST 2051" }, { "50", "01", "RDD8" }, { "51", "01", "RP215" }, { "60", "60", "S12M-2" }, { "61", "01", "S334-1" }, { "61", "02", "S334-1" }, { "62", "01", "RP207" }, { "62", "02", "S334-1" }, { "62", "03", "RP208" }, { "64", "64", "RP196" }, { "64", "7f", "RP196" }};

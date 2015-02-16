@@ -37,148 +37,110 @@ namespace WpfApplication1
             InitializeComponent();
         }
 
-        private async void UploadButtonNewFile_Click(object sender, RoutedEventArgs e)
-        {
-            if (ListViewNewFile.Items.Count != 0)
-            {
-                try
-                {
-                    //clear sort everytime new file is uploaded
-                    ListViewNewFile.Items.SortDescriptions.Clear();
-                    AdornerLayer.GetAdornerLayer(listViewSortCol).Remove(listViewSortAdorner);
-                }
+        private async void UploadButtonNewFile_Click(object sender, RoutedEventArgs e){
+          
+          if (ListViewNewFile.Items.Count != 0){
+            try{
+              //clear sort everytime new file is uploaded
+              ListViewNewFile.Items.SortDescriptions.Clear();
+              AdornerLayer.GetAdornerLayer(listViewSortCol).Remove(listViewSortAdorner);
+            } catch{
+                /*let code work*/
+              }
+          }
 
-                catch {/*let code work*/}
-            }
+          if (file_browser.ShowDialog()){
+            Variables.new_file_path = file_browser.FileName;
+            TextBoxNewFilePath.Text = Variables.new_file_path;
+          } else
+              return;
 
-            if (file_browser.ShowDialog())
-            {
-                Variables.string_newfilepath = file_browser.FileName;
-                TextBoxNewFilePath.Text = Variables.string_newfilepath;
-            }
+          TextBlockNewFileProgress.Text = "Loading...";
 
-            else
-                return;
+          //new Index class object
+          Index data = new Index();
 
-            TextBlockNewFileProgress.Text = "Loading...";
+          //call Read method
+           int total_rows = await Task.Run(() => data.Read(Variables.new_file_path));
+         
+          //show standard in TextBlock
+          switch(total_rows){
+              case 742500:{
+                  TextBlockNewFileStandard.Text = "720p50";
+              } case 618750:{
+                  TextBlockNewFileStandard.Text = "720p59";    
+              } case 1485000:{
+                  TextBlockNewFileStandard.Text = "1080i50";         
+              } case 1237500:{
+                  TextBlockNewFileStandard.Text = "1080i59";      
+              } default:
+                  //
+          }
 
-            //new Index class object
-            Index data = new Index();
-
-            //call Read method
-             int total_rows = await Task.Run(() => data.Read(Variables.string_newfilepath));
-           
-            //show standard in TextBlock
-            switch(total_rows){
-                case 
-            }            
+          //cal Sort method
+          data.Sort(total_rows);            
         }
 
         private async void UploadButtonOldFile_Click(object sender, RoutedEventArgs e)
         {
-            if (ListViewOldFile.Items.Count != 0)
-            {
-                try
-                {
-                    //clear sort everytime new file is uploaded
-                    ListViewOldFile.Items.SortDescriptions.Clear();
-                    AdornerLayer.GetAdornerLayer(listViewSortCol).Remove(listViewSortAdorner);
-                }
+            if (ListViewOldFile.Items.Count != 0){
+            try{
+              //clear sort everytime new file is uploaded
+              ListViewOldFile.Items.SortDescriptions.Clear();
+              AdornerLayer.GetAdornerLayer(listViewSortCol).Remove(listViewSortAdorner);
+            } catch{
+                /*let code work*/
+              }
+          }
 
-                catch {/*let code work*/}
-            }
+          if (file_browser.ShowDialog()){
+            Variables.old_file_path = file_browser.FileName;
+            TextBoxOldFilePath.Text = Variables.old_file_path;
+          } else
+              return;
 
-            //setting .csv filter
-            file_browser.DefaultExt = ".csv";
-            file_browser.Filter = "CSV Files (*.csv)|*.csv";
+          TextBlockOldFileProgress.Text = "Loading...";
 
-            //calling ShowDialog method
-            Variables.bool_oldfilepath = file_browser.ShowDialog();
+          //new Index class object
+          Index data = new Index();
 
-            if (Variables.bool_oldfilepath == true)
-            {
-                Variables.string_oldfilepath = file_browser.FileName;
-                TextBoxOldFilePath.Text = Variables.string_oldfilepath;
-            }
+          //call Read method
+           int total_rows = await Task.Run(() => data.Read(Variables.old_file_path));
+         
+          //show standard in TextBlock
+          switch(total_rows){
+              case 742500:{
+                  TextBlockOldFileStandard.Text = "720p50";
+              } case 618750:{
+                  TextBlockOldFileStandard.Text = "720p59";    
+              } case 1485000:{
+                  TextBlockOldFileStandard.Text = "1080i50";         
+              } case 1237500:{
+                  TextBlockOldFileStandard.Text = "1080i59";      
+              } default:
+                  //
+          }
 
-            else
-                return;
-
-            TextBlockOldFileProgress.Text = "Loading...";
-
-            //object to call methods in Read class
-            Read readfile = new Read();
-
-            //call OldFileRead method
-            await Task.Run(() => readfile.OldFileRead());
-
-            //show standard in TextBlock
-            if (Variables.bool_oldfilestandard1080i50 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-
-                TextBlockOldFileStandard.Text = "1080i50";
-                sortobject.OldFileSort1080i50();
-                Variables.bool_oldfilestandard1080i50 = false;
-            }
-
-            else if (Variables.bool_oldfilestandard1080i59 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-
-                TextBlockOldFileStandard.Text = "1080i5994";
-                sortobject.OldFileSort1080i59();
-                Variables.bool_oldfilestandard1080i59 = false;
-            }
-
-            else if (Variables.bool_oldfilestandard720p50 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-
-                TextBlockOldFileStandard.Text = "720p50";
-                sortobject.OldFileSort720p50();
-                Variables.bool_oldfilestandard720p50 = false;
-            }
-
-            else if (Variables.bool_oldfilestandard720p59 == true)
-            {
-                //object to call methods in Sort class
-                Sort sortobject = new Sort();
-
-                TextBlockOldFileStandard.Text = "720p5994";
-                sortobject.OldFileSort720p59();
-                Variables.bool_oldfilestandard720p59 = false;
-            }
-
-            TextBlockOldFileProgress.Text = " ";
+          //cal Sort method
+          data.Sort(total_rows);
         }
 
-        private void ListViewNewFile_DoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (ListViewNewFile.Items.Count != 0)
-            {
-                try
-                {
-                    //object for DetailPopUp
-                    DetailPopUp popup = new DetailPopUp();
-                    Variables selecteditem = ListViewNewFile.SelectedItem as Variables;
-                    popup.TextBoxDIDSDID.Text = selecteditem.DIDSDID;
-                    popup.TextBoxLineNumber.Text = System.Convert.ToString(selecteditem.linenumber);
-                    popup.TextBoxSampleNumber.Text = System.Convert.ToString(selecteditem.samplenumber);
-                    popup.TextBoxDataCount.Text = System.Convert.ToString(selecteditem.datecount);
-                    popup.ShowDialog();
-                    return;
-                }
-
-                catch
-                {
-
-                    return;
-                }
-            }
+        private void ListViewNewFile_DoubleClick(object sender, MouseButtonEventArgs e){
+          if (ListViewNewFile.Items.Count != 0){
+            try{
+              //object for DetailPopUp
+              DetailPopUp popup = new DetailPopUp();
+              Variables selecteditem = ListViewNewFile.SelectedItem as Variables;
+              popup.TextBoxDIDSDID.Text = selecteditem.DIDSDID;
+              popup.TextBoxLineNumber.Text = System.Convert.ToString(selecteditem.linenumber);
+              popup.TextBoxSampleNumber.Text = System.Convert.ToString(selecteditem.samplenumber);
+              popup.TextBoxDataCount.Text = System.Convert.ToString(selecteditem.datecount);
+              popup.ShowDialog();
+              return;
+            } catch {
+                return;
+              }
+          }
         }
 
         private void ButtonCompare_Click(object sender, RoutedEventArgs e)
@@ -199,22 +161,19 @@ namespace WpfApplication1
             }
             //exceptions
 
-            if (TextBlockNewFileProgress.Text == "Loading..." || TextBlockOldFileProgress.Text == "Loading..." || (TextBlockNewFileProgress.Text == "Loading..." && TextBlockOldFileProgress.Text == "Loading..."))
-            {
-                MessageBox.Show("Loading...Please wait.");
-                return;
+            if (TextBlockNewFileProgress.Text == "Loading..." || TextBlockOldFileProgress.Text == "Loading..."){
+              MessageBox.Show("Loading...Please wait.");
+              return;
             }
 
-            if (Variables.bool_newfilepath != Variables.bool_oldfilepath)
-            {
-                MessageBox.Show("Please select two files!");
-                return;
+            if (Variables.new_file_path.Length == 0 || Variables.old_file_path == 0){
+              MessageBox.Show("Please select two files!");
+              return;
             }
 
-            if (TextBlockNewFileStandard.Text != TextBlockOldFileStandard.Text)
-            {
-                MessageBox.Show("Standard mis-match!");
-                return;
+            if (TextBlockNewFileStandard.Text != TextBlockOldFileStandard.Text){
+              MessageBox.Show("Standard mis-match!");
+              return;
             }
 
             /****************************************************************************************************************************************************/
